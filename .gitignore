@@ -1,0 +1,8 @@
+.env
+.dockerignore
+PWL_2026/.env
+PWL_2026/vendor
+PWL_2026/storage
+PWL_2026/public/build
+PWL_2026/public/storage
+PWL_2026/node_modules
