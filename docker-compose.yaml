@@ -9,7 +9,7 @@ services:
       # - "443:443/udp"
     volumes:
       - ./PWL_2026:/app
-      - /PWL_2026/vendor/
+      - vendor:/app/vendor
     environment:
       - SERVER_NAME=:80
       - DB_HOST=${DB_HOST}
@@ -61,4 +61,6 @@ volumes:
   mdata:
     driver: local
   bytebase_data:
+    driver: local
+  vendor:
     driver: local
