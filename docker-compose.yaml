@@ -8,7 +8,8 @@ services:
       # - "443:443"
       # - "443:443/udp"
     volumes:
-      - ./PWL_2026:/app
+      # - ./PWL_2026:/app
+      - ./POS:/app
       - vendor:/app/vendor
     environment:
       - SERVER_NAME=:80
