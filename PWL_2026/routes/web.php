@@ -1,39 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhotoController;
 
-## Route Dasar
-Route::get('/', function () {
-    // return view('welcome');
-    return "Selamat Datang";
-});
+Route::resource('photos', PhotoController::class);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'about']);
+Route::get('/articles/{id}', [ArticleController::class, 'articles']);
 
-Route::get('/hello', function () {
-    return "Hello World";
-});
+Route::get('/hello', [WelcomeController::class, 'hello']);
 
-Route::get('/world', function () {
-    return "World";
-});
-
-Route::get('/about', function () {
-    return "Nama: Ardhan Dikri Achmad Fahrudin<br> 
-    NIM: 244107020012";
-});
-
-## Route Parameter
-// Route::get('/user/{nama}', function ($nama) {
-//     return 'Nama Saya ' . $nama;
-// });
-
-
-Route::get('/posts/{post}/comments/{comment}', function($postId, $commentId){
+Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     return 'Pos ke-' . $postId . ' Komentar ke-' . $commentId;
 });
 
-Route::get('/articles/{id}', function($id){
-    return 'Artikel dengan ID ' . $id;
-});
+Route::resource('photos', PhotoController::class);
+
+Route::resource('photos', PhotoController::class)->only([
+    'index',
+    'show'
+]);
+
+Route::resource('photos', PhotoController::class)->except([
+    'create',
+    'store',
+    'update',
+    'destroy'
+]);
+
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
+
 
 ## Route Optional Parameter
 // Route::get('/user/{name?}', function($name = 'null'){
@@ -41,6 +42,6 @@ Route::get('/articles/{id}', function($id){
 // });
 
 
-Route::get('/user/{name?}', function($name = 'John'){
+Route::get('/user/{name?}', function ($name = 'John') {
     return 'Nama saya ' . $name;
 });
